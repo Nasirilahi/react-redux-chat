@@ -48,12 +48,25 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 
 
-export default class ChatContainer extends Component{
+class ChatContainer extends Component{
+    
+    componentDidMount(){
+      console.log(this.props.user.data);
+      debugger;
+    } 
     render(){
         return(
             <div>
-                <h1>Chat container</h1>
+                <h1>Chat Container</h1>
+                <h2>{this.props.user.data.name}</h2>
             </div>
         );
     }
 }
+
+function mapStateToProps(state) {
+  return {
+      user: state.user,  
+  }
+}
+export default connect(mapStateToProps)(ChatContainer)

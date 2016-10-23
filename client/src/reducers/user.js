@@ -4,7 +4,7 @@ import { REQUEST_USER, RECIEVE_USER_SUCCESS, RECIEVE_USER_FAILURE } from '../con
 const initialState = {
   loaded: false,
   loading: false,
-  user: {}
+  data: {}
 };
 
 
@@ -13,10 +13,9 @@ export default function user(state = initialState, action) {
   case REQUEST_USER: 
           return {...state, loading: true };
   case RECIEVE_USER_SUCCESS:
-  debugger;
     return {...state, loading: false, loaded: true, data:action.newUser };
   case RECIEVE_USER_FAILURE:
-      return { ...state, loading:false, data:[]}  
+      return { ...state, loading:false, data:{},err:action.err}  
   default:
     return state;
   }

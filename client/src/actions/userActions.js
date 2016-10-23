@@ -71,36 +71,17 @@ export function welcomePage(username) {
     }
     return axios.post(url,{username:username},config).then(function(res){ 
       console.log(res);
-      debugger;
+      dispatch(receiveUser(res.data.username));
+      browserHistory.push('/chat');
     }).catch(function(err){
-      console.log(err);
-      debugger;
+      dispatch(failureUser(err));
     })
-
-  //   return axios({
-  //     method:'post',
-  //     url:url,
-  //     headers:  { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-  //     data: {
-  //       username: username        
-  //     } 
-  //   }).then(function(res){
-  //     console.log('response recieved',res);
-  //     debugger;
-  // }).catch(function(err) {
-  //       console.log(err);
-  //       debugger;
-  //   });  
+  
   }
 
-  // return {
-  //   type: types.SAVE_USERNAME,
-  //   username
-  // };
 }
 
 export function receiveUser(username) {
-  debugger;
   const newUser = {
     name: username,
     id: Symbol(username)
